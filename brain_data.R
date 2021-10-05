@@ -79,16 +79,20 @@ medob <- s1.trim.3D[c(9, 18, 29, 45:47, 56:57, 60), 1:3, 1:29]
 
 
 
-### Geomorphometric analyses 
+### Geomorphometric analyses using package 'geomorph'
 
-### Generalized Procrustes Analysis 
+### Generalized Procrustes Analysis - how we get shape variables from landmark data (refer to gpagen details)
 S1.GPA <- gpagen(s1.trim.3D)
-plot(S1.GPA)
+plot(S1.GPA) # ? does this plot all the species on top of each other?
 
-# Define modules
-brain.modules <- define.modules(s1.trim.3D, 5) # this isn't working
+### Test the integration of the brain structures ('quantifying the degree of morphological integration between modular partitions of shape data')
+### landmarks of the brain assigned to brain region partitions
+    # tel  = A
+    # dien = B (the shared point 45 is classified under B)
+    # mes  = C
+    # cere = D
+    # medob= E
 
-# Test of Integration of Brain structures 
 brain.regions <- c('A', 'A', 'A', 'A', 'A',
                    'B',
                    'C', 'C',
@@ -112,12 +116,6 @@ brain.regions <- c('A', 'A', 'A', 'A', 'A',
                    'E',
                    'B')
 
-# tel = a
-# dien = b
-# mes = c
-# cere = d
-# medob = e
-
 Brain.IT <- integration.test(S1.GPA$coords, partition.gp = brain.regions, iter = 999)
 summary(Brain.IT)
 picknplot.shape(plot(Brain.IT))
@@ -126,9 +124,11 @@ Brain.Mod <- modularity.test(S1.GPA$coords, partition.gp = brain.regions, iter =
 summary(Brain.Mod)
 plot(Brain.Mod)
 
-# refer to adam dean papers on how to interpret the results 
+# refer to adam dean papers on how to interpret the results
+    # Adams, D.C. and M.L. Collyer. 2019. 
+    # Comparing the strength of modular signal, 
+    # and evaluating alternative modular hypotheses, 
+    # using covariance ratio effect sizes with morphometric data. 
+    # Evolution. 73:2352-2367.
 
-
-####### 10/5/2021 #######
-traits <- read.csv("Lizard_Trait_Data.csv", stringsAsFactors = F)
 
