@@ -136,7 +136,7 @@ brain.regions <- c('A', 'A', 'A', 'A', 'A',
 
 Brain.IT <- integration.test(S1.GPA$coords, partition.gp = brain.regions, iter = 999)
 summary(Brain.IT)
-picknplot.shape(plot(Brain.IT))
+#picknplot.shape(plot(Brain.IT))
 
 Brain.Mod <- modularity.test(S1.GPA$coords, partition.gp = brain.regions, iter = 999)
 summary(Brain.Mod)
