@@ -1,4 +1,8 @@
 # lizard_brain_evolution
-testing hypotheses of brain evolution in lizard species 
 
-This is a test edit at 3:03 pm 
+Testing hypotheses of brain evolution in lizard species.
+
+Hypotheses include 
+1) Cognitive buffer hypothesis 
+2) Expensive brain hypothesis
+
