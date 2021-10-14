@@ -31,10 +31,15 @@ snakes <- c("Xerotyphlops_vermicularis",
 
 s1.trim <- s1[!((s1$Id) %in% snakes),]
 
+### order species in alphabetical order
+
+s1.sorted <- s1.trim[order(s1.trim$Id),]
+
+rownames(s1.sorted) <- seq(length=nrow(s1.sorted))
 
 ### Convert 2D array to 3D array
 
-s1.trim.3D <- as.matrix(s1.trim[,-(1)])
+s1.trim.3D <- as.matrix(s1.sorted[,-(1)])
 s1.trim.3D <- arrayspecs(s1.trim.3D, 61, 3)
 
       ### the 3D array is [a, b, c]
@@ -85,6 +90,8 @@ medob <- s1.trim.3D[c(9, 18, 29, 45:47, 56:57, 60), 1:3, 1:29]
 S1.GPA <- gpagen(s1.trim.3D)
 plot(S1.GPA) # ? does this plot all the species on top of each other?
 
+S1.GPA$points.var
+
 ### Test the integration of the brain structures ('quantifying the degree of morphological integration between modular partitions of shape data')
 ### landmarks of the brain assigned to brain region partitions
     # tel  = A
@@ -116,13 +123,17 @@ brain.regions <- c('A', 'A', 'A', 'A', 'A',
                    'E',
                    'B')
 
-Brain.IT <- integration.test(S1.GPA$coords, partition.gp = brain.regions, iter = 999)
+Brain.IT <- integration.test(S1.GPA$coords, partition.gp = brain.regions, iter = 999) #two-block partial least squares analysis; correlation between each individual component 
 summary(Brain.IT)
 picknplot.shape(plot(Brain.IT))
+
+Brain.IT
 
 Brain.Mod <- modularity.test(S1.GPA$coords, partition.gp = brain.regions, iter = 999)
 summary(Brain.Mod)
 plot(Brain.Mod)
+
+Brain.Mod$CR.mat # modularity scores 
 
 # refer to adam dean papers on how to interpret the results
     # Adams, D.C. and M.L. Collyer. 2019. 
@@ -131,4 +142,10 @@ plot(Brain.Mod)
     # using covariance ratio effect sizes with morphometric data. 
     # Evolution. 73:2352-2367.
 
+
+# Phylo-integration and Phylo-modularity 
+
+
+
+Brain.phylo.IT <- phylo.integration(S1.GPA$coords, phy = tree, partition.gp = brain.regions, iter = 999)
 

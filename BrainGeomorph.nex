@@ -1,0 +1,50 @@
+#NEXUS
+
+
+BEGIN TAXA;
+	TITLE Taxa;
+	DIMENSIONS NTAX=29;
+	TAXLABELS
+		Ablepharus_kitaibelii Acontias_meleagris Agama_agama Amphisbaena_scutigerum Anguis_fragilis Bachia_flavescens Basiliscus_vittatus Blanus_cinereus Bradypodion_pumilum Chalcides_chalcides Chalcides_sepsoides Dasia_olivacea Draco_volans Eublepharis_macularius Gekko_gecko Hemiergis_quadrilineata Lepidothyris_fernandi Lygodactylus_picturatus Melanoseps_loveridgei Ophiodes_fragilis Phelsuma_grandis Plestiodon_marginatus Pogona_vitticeps Pseudopus_apodus Rieppeleon_brevicaudatus Takydromus_sexlineatus Teratoscincus_scincus Trioceros_jacksonii Tropidurus_torquatus 
+	;
+END;
+
+
+begin TREES;
+
+	TRANSLATE
+		1 Ablepharus_kitaibelii,
+		2 Acontias_meleagris,
+		3 Agama_agama,
+		4 Amphisbaena_scutigerum,
+		5 Anguis_fragilis,
+		6 Bachia_flavescens,
+		7 Basiliscus_vittatus,
+		8 Blanus_cinereus,
+		9 Bradypodion_pumilum,
+		10 Chalcides_chalcides,
+		11 Chalcides_sepsoides,
+		12 Dasia_olivacea,
+		13 Draco_volans,
+		14 Eublepharis_macularius,
+		15 Gekko_gecko,
+		16 Hemiergis_quadrilineata,
+		17 Lepidothyris_fernandi,
+		18 Lygodactylus_picturatus,
+		19 Melanoseps_loveridgei,
+		20 Ophiodes_fragilis,
+		21 Phelsuma_grandis,
+		22 Plestiodon_marginatus,
+		23 Pogona_vitticeps,
+		24 Pseudopus_apodus,
+		25 Rieppeleon_brevicaudatus,
+		26 Takydromus_sexlineatus,
+		27 Teratoscincus_scincus,
+		28 Trioceros_jacksonii,
+		29 Tropidurus_torquatus;
+
+
+	TREE TREE1 = (((((((1:40.142095698952915,17:40.14209576275201):15.870649521404786,12:56.0127429190119):15.357280010000004,16:71.37001920732405):7.117959560000031,(((10:23.76941570753,11:23.769415737578):28.28286901956708,19:52.05228464366408):7.641813889968006,22:59.69409890002789):18.793880546650044):14.29986035999994,2:92.78784858741005):77.29754686999993,((((((3:81.52458363757158,13:81.52458037292558):12.109846460000057,23:93.63442905932945):21.94794726999993,((9:40.2841761911305,28:40.284175877745895):11.53668853284502,25:51.82086450969002):63.76151179449995):29.89057757000006,(7:77.08413001020901,29:77.0841244392449):68.38883133000003):9.365071010000008,((5:14.843131887493504,24:14.843131984830004):38.2946382348098,20:53.13776735533601):101.70026115000005):9.805188459999982,(((4:67.45544891219868,8:67.45545636000001):74.02396667000002,26:141.47941090085692):13.181516590000001,6:154.66093332342604):9.982281529999995):5.442175719999881):8.360992690000131,(14:95.104253940823,((15:76.1525880102278,(18:65.18328366608701,21:65.18328291707941):10.969302427960187):10.917326549999999,27:87.0699117532232):8.034338560000009):83.34212725000003):0.0;
+end;
+
+
