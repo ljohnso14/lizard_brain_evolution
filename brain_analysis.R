@@ -16,6 +16,8 @@ library(ggplot2)
 ### Read in brain data 
 s1 <- read.csv("./brain_data/whole_brain_coords_S1.csv", stringsAsFactors = F)
 
+rownames(s1) <- s1$Id
+
 ### Remove snakes from dataframe 
 snakes <- c("Xerotyphlops_vermicularis",
             "Python_regius",
@@ -41,6 +43,8 @@ rownames(s1.sorted) <- seq(length=nrow(s1.sorted))
 
 s1.trim.3D <- as.matrix(s1.sorted[,-(1)])
 s1.trim.3D <- arrayspecs(s1.trim.3D, 61, 3)
+
+head(s1.trim.3D)
 
       ### the 3D array is [a, b, c]
       ### where 
@@ -87,10 +91,16 @@ medob <- s1.trim.3D[c(9, 18, 29, 45:47, 56:57, 60), 1:3, 1:29]
 ### Geomorphometric analyses using package 'geomorph'
 
 ### Generalized Procrustes Analysis - how we get shape variables from landmark data (refer to gpagen details)
-S1.GPA <- gpagen(s1.trim.3D)
+S1.GPA <- gpagen(s1.trim.3D, ProcD = T, verbose = T)
 plot(S1.GPA) # ? does this plot all the species on top of each other?
 
+S1.GPA$procD
 S1.GPA$points.var
+plot(S1.GPA)
+
+head(S1.GPA)
+
+S1.gdf <- 
 
 ### Test the integration of the brain structures ('quantifying the degree of morphological integration between modular partitions of shape data')
 ### landmarks of the brain assigned to brain region partitions
