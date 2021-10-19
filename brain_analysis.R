@@ -16,6 +16,9 @@ library(ggplot2)
 ### Read in brain data 
 s1 <- read.csv("./brain_data/whole_brain_coords_S1.csv", stringsAsFactors = F)
 
+trait<- read.csv("./trait_data/Lizard_Trait_Data.csv")
+trait$ï..Id <- tolower(trait$ï..Id)
+
 rownames(s1) <- s1$Id
 
 ### Remove snakes from dataframe 
