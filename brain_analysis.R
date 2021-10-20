@@ -406,3 +406,4 @@ clutch.dien.pgls <- procD.pgls(dien.GPA$coord ~ dien.GPA$Csize + clutch, phy=s1.
 summary(clutch.dien.pgls)
 
 
+capture.output(summary(fm.cere.pgls), file = "brain_results.doc", append = T)
