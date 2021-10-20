@@ -305,17 +305,104 @@ cere.GPA$procD # Procrustes distance matrix for all specimens
 cere.GPA$points.VCV # variance-covariance matrix among Procrustes shape variables 
 plot(cere.GPA)
 
+cere.trait.gdf <- geomorph.data.frame(cere.GPA,
+                                 bio_realm = s1.traits$main_biogeographic_realm,
+                                 lat = s1.traits$Latitude,
+                                 lon = s1.traits$longitude,
+                                 ie = s1.traits$insular_endemic,
+                                 maxSVL = s1.traits$maxSVL,
+                                 fSVL = s1.traits$fSVL,
+                                 hSVL = s1.traits$hatchlingSVL,
+                                 hm = s1.traits$habitat_modes,
+                                 at = s1.traits$activity_time,
+                                 substrate = s1.traits$substrate,
+                                 microhab = s1.traits$microhabitat,
+                                 fm = s1.traits$foraging_mode, 
+                                 rm = s1.traits$reproductive_mode,
+                                 clutch = s1.traits$clutch_size,
+                                 IUCNra = s1.traits$IUCN_redlist_assessment,
+                                 IUCNpt = s1.traits$IUCN_population_trend)
+
+fm.cere.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + fm, phy=s1.tree, SS.type="I", data=cere.trait.gdf)
+summary(fm.cere.pgls)
+
+rm.cere.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + rm, phy=s1.tree, SS.type="I", data=cere.trait.gdf)
+summary(rm.cere.pgls) # trend 
+
+clutch.cere.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + clutch, phy=s1.tree, SS.type="I", data=cere.trait.gdf)
+summary(clutch.cere.pgls)
+
+##################
+
 tel.GPA <- gpagen(tel, ProcD = T, verbose = T)
 
 tel.GPA$procD # Procrustes distance matrix for all specimens 
 tel.GPA$points.VCV # variance-covariance matrix among Procrustes shape variables 
 plot(tel.GPA)
 
+tel.trait.gdf <- geomorph.data.frame(tel.GPA,
+                                      bio_realm = s1.traits$main_biogeographic_realm,
+                                      lat = s1.traits$Latitude,
+                                      lon = s1.traits$longitude,
+                                      ie = s1.traits$insular_endemic,
+                                      maxSVL = s1.traits$maxSVL,
+                                      fSVL = s1.traits$fSVL,
+                                      hSVL = s1.traits$hatchlingSVL,
+                                      hm = s1.traits$habitat_modes,
+                                      at = s1.traits$activity_time,
+                                      substrate = s1.traits$substrate,
+                                      microhab = s1.traits$microhabitat,
+                                      fm = s1.traits$foraging_mode, 
+                                      rm = s1.traits$reproductive_mode,
+                                      clutch = s1.traits$clutch_size,
+                                      IUCNra = s1.traits$IUCN_redlist_assessment,
+                                      IUCNpt = s1.traits$IUCN_population_trend)
 
+fm.tel.pgls <- procD.pgls(tel.GPA$coord ~ tel.GPA$Csize + fm, phy=s1.tree, SS.type="I", data=tel.trait.gdf)
+summary(fm.tel.pgls)
+
+rm.tel.pgls <- procD.pgls(tel.GPA$coord ~ tel.GPA$Csize + rm, phy=s1.tree, SS.type="I", data=tel.trait.gdf)
+summary(rm.tel.pgls) # trend
+
+clutch.tel.pgls <- procD.pgls(tel.GPA$coord ~ tel.GPA$Csize + clutch, phy=s1.tree, SS.type="I", data=tel.trait.gdf)
+summary(clutch.tel.pgls)
+
+# Csize has an effect on teh tel but not the trait itself
+
+
+
+#################
 dien.GPA <- gpagen(dien, ProcD = T, verbose = T)
 
 dien.GPA$procD # Procrustes distance matrix for all specimens 
 dien.GPA$points.VCV # variance-covariance matrix among Procrustes shape variables 
 plot(dien.GPA)
+
+dien.trait.gdf <- geomorph.data.frame(dien.GPA,
+                                      bio_realm = s1.traits$main_biogeographic_realm,
+                                      lat = s1.traits$Latitude,
+                                      lon = s1.traits$longitude,
+                                      ie = s1.traits$insular_endemic,
+                                      maxSVL = s1.traits$maxSVL,
+                                      fSVL = s1.traits$fSVL,
+                                      hSVL = s1.traits$hatchlingSVL,
+                                      hm = s1.traits$habitat_modes,
+                                      at = s1.traits$activity_time,
+                                      substrate = s1.traits$substrate,
+                                      microhab = s1.traits$microhabitat,
+                                      fm = s1.traits$foraging_mode, 
+                                      rm = s1.traits$reproductive_mode,
+                                      clutch = s1.traits$clutch_size,
+                                      IUCNra = s1.traits$IUCN_redlist_assessment,
+                                      IUCNpt = s1.traits$IUCN_population_trend)
+
+fm.dien.pgls <- procD.pgls(dien.GPA$coord ~ dien.GPA$Csize + fm, phy=s1.tree, SS.type="I", data=dien.trait.gdf)
+summary(fm.dien.pgls) # trend
+
+rm.dien.pgls <- procD.pgls(dien.GPA$coord ~ dien.GPA$Csize + rm, phy=s1.tree, SS.type="I", data=dien.trait.gdf)
+summary(rm.dien.pgls) # sign effect of rm 
+
+clutch.dien.pgls <- procD.pgls(dien.GPA$coord ~ dien.GPA$Csize + clutch, phy=s1.tree, SS.type="I", data=dien.trait.gdf)
+summary(clutch.dien.pgls)
 
 
