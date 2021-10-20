@@ -164,6 +164,10 @@ head(S1.GPA)
 
 S1.gdf <- geomorph.data.frame(S1.GPA, phy = s1.tree) 
 
+### Calculate phylogenetic signal 
+physignal(S1.GPA$coords, s1.tree)
+physignal(S1.GPA$Csize, s1.tree)
+
 ### Test the integration of the brain structures ('quantifying the degree of morphological integration between modular partitions of shape data')
 ### landmarks of the brain assigned to brain region partitions
     # tel  = A
@@ -197,7 +201,7 @@ brain.regions <- c('A', 'A', 'A', 'A', 'A',
 
 Brain.IT <- integration.test(S1.GPA$coords, partition.gp = brain.regions, iter = 999) #two-block partial least squares analysis; correlation between each individual component 
 summary(Brain.IT)
-picknplot.shape(plot(Brain.IT))
+plot(Brain.IT)
 
 Brain.IT
 
@@ -219,5 +223,99 @@ Brain.Mod$CR.mat # modularity scores
 
 
 
-Brain.phylo.IT <- phylo.integration(S1.GPA$coords, phy = tree, partition.gp = brain.regions, iter = 999)
+Brain.phylo.IT <- phylo.integration(S1.gdf$coords, phy = s1.tree, partition.gp = brain.regions, iter = 999)
+summary(Brain.phylo.IT)
+plot(Brain.phylo.IT)
+
+str(Brain.phylo.IT)
+
+Brain.phylo.Mod <- phylo.modularity(S1.gdf$coords, phy = s1.tree, partition.gp = brain.regions, iter = 999)
+summary(Brain.phylo.Mod)
+plot(Brain.phylo.Mod)
+
+###### PCA
+
+S1.PCA <- gm.prcomp(S1.GPA$coords, phy = s1.tree, GLS = TRUE)
+summary(S1.PCA)
+plot(S1.PCA)
+plot(S1.PCA, phylo=TRUE)
+
+str(S1.PCA)
+pca3d(S1.PCA$x)
+
+
+
+Brain.pgls <- procD.pgls(coords ~ Csize, phy=s1.tree, data=S1.gdf)
+summary(Brain.pgls)
+
+
+##### Is brain shape different between foraging modes, reproductive mode, latitude
+
+trait.gdf <- geomorph.data.frame(S1.GPA,
+                                 bio_realm = s1.traits$main_biogeographic_realm,
+                                 lat = s1.traits$Latitude,
+                                 lon = s1.traits$longitude,
+                                 ie = s1.traits$insular_endemic,
+                                 maxSVL = s1.traits$maxSVL,
+                                 fSVL = s1.traits$fSVL,
+                                 hSVL = s1.traits$hatchlingSVL,
+                                 hm = s1.traits$habitat_modes,
+                                 at = s1.traits$activity_time,
+                                 substrate = s1.traits$substrate,
+                                 microhab = s1.traits$microhabitat,
+                                 fm = s1.traits$foraging_mode, 
+                                 rm = s1.traits$reproductive_mode,
+                                 clutch = s1.traits$clutch_size,
+                                 IUCNra = s1.traits$IUCN_redlist_assessment,
+                                 IUCNpt = s1.traits$IUCN_population_trend)
+
+#foraging.gdf      <- geomorph.data.frame(S1.GPA, fm = s1.traits$foraging_mode)
+#repro.mode.gdf    <- geomorph.data.frame(S1.GPA, rm = s1.traits$reproductive_mode)
+#latitude.gdf      <- geomorph.data.frame(S1.GPA, latitude = s1.traits$Latitude)
+#biogeography.gdf  <- geomorph.data.frame(S1.GPA, bio_realm = s1.traits$main_biogeographic_realm)
+#substrate.gdf    <- geomorph.data.frame(S1.GPA, substrate = s1.traits$substrate)
+#activitytime.gdf <- geomorph.data.frame(S1.GPA, activity = s1.traits$activity_time)
+
+fm.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + fm, phy=s1.tree, SS.type="I", data=foraging.gdf)
+summary(fm.pgls)
+
+
+rm.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + rm, phy=s1.tree, SS.type="I", data=repro.mode.gdf)
+summary(rm.pgls)
+
+latitude.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + latitude, phy=s1.tree, SS.type="III", data=latitude.gdf, iter=9999)
+summary(latitude.pgls)
+
+bio_realm.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + bio_realm, phy=s1.tree, SS.type="III", 
+                             data=biogeography.gdf, iter=9999)
+summary(bio_realm.pgls)
+
+substrate.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + substrate, phy=s1.tree, SS.type="III", data=substrate.gdf, iter=9999)
+summary(substrate.pgls)
+
+activitytime.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + activity, phy=s1.tree, SS.type="III", data=activitytime.gdf, iter=9999)
+summary(activitytime.pgls)
+
+#############
+# analysis above but with the individual brain regions
+
+cere.GPA <- gpagen(cere, ProcD = T, verbose = T)
+
+cere.GPA$procD # Procrustes distance matrix for all specimens 
+cere.GPA$points.VCV # variance-covariance matrix among Procrustes shape variables 
+plot(cere.GPA)
+
+tel.GPA <- gpagen(tel, ProcD = T, verbose = T)
+
+tel.GPA$procD # Procrustes distance matrix for all specimens 
+tel.GPA$points.VCV # variance-covariance matrix among Procrustes shape variables 
+plot(tel.GPA)
+
+
+dien.GPA <- gpagen(dien, ProcD = T, verbose = T)
+
+dien.GPA$procD # Procrustes distance matrix for all specimens 
+dien.GPA$points.VCV # variance-covariance matrix among Procrustes shape variables 
+plot(dien.GPA)
+
 
