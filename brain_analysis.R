@@ -4,6 +4,15 @@
 library(tidyverse)
 library(geomorph)
 library(ggplot2)
+library(cowplot)
+library(ape)
+library(phytools)
+library(geiger)
+library(tidytree)
+library(picante)
+library(pca3d)
+library(Rphylopars)
+library(dplyr)
 
 
 ### Table of Contents
@@ -13,15 +22,53 @@ library(ggplot2)
 ### 4) create individual dataframes for each major brain region 
 
 
+### Read in tree
+s1.tree <- read.nexus("BrainGeomorph.nex")
+
+s1.tree$tip.label <- tolower(s1.tree$tip.label) # make species Id's lowercase
+
+plot(s1.tree)
+
+### Read in trait data
+s1.traits <- read.csv("./trait_data/Lizard_Trait_Data.csv", stringsAsFactors = F)
+
+s1.traits$Id <- tolower(s1.traits$Id) #make species Id's lowercase
+rownames(s1.traits) <- s1.traits$Id
+
+head(s1.traits)
+
+### impute continuous trait data 
+
+s1.traits.cont <- s1.traits[,c("Id", "maxSVL", "fSVL", "hatchlingSVL", "clutch_size")]
+
+names(s1.traits.cont)[1] <- "species" # rename column from Id to species b/c phylpar requires it
+
+
+s1.traits.imputed <- phylopars(trait_data = s1.traits.cont, tree = s1.tree)
+
+str(s1.traits.imputed)
+s1.traits.imputed$anc_recon
+
+s1.traits.imputed.values <- s1.traits.imputed$anc_recon
+s1.traits.imputed.values <- s1.traits.imputed.values[c(1:29),]
+
+# s1.traits.imputed.values isn't a data frame, so needed to manually add imputed values to s1.traits
+s1.traits["amphisbaena_scutigerum","fSVL"] = 325.891 
+s1.traits["amphisbaena_scutigerum", "hatchlingSVL"] <- 98.704
+s1.traits["amphisbaena_scutigerum","clutch_size"] <- 5.507
+
+s1.traits["plestiodon_marginatus","hatchlingSVL"] <- 33.62
+s1.traits["plestiodon_marginatus","clutch_size"] <- 4.78
+
+s1.traits["rieppeleon_brevicaudatus","hatchlingSVL"] <- 25.52
+
+
 ### Read in brain data 
 s1 <- read.csv("./brain_data/whole_brain_coords_S1.csv", stringsAsFactors = F)
 
-trait<- read.csv("./trait_data/Lizard_Trait_Data.csv")
-trait$ï..Id <- tolower(trait$ï..Id)
+head(s1)
 
-rownames(s1) <- s1$Id
-
-### Remove snakes from dataframe 
+### Remove snakes from brain dataframe 
 snakes <- c("Xerotyphlops_vermicularis",
             "Python_regius",
             "Epicrates_cenchria",
@@ -36,11 +83,16 @@ snakes <- c("Xerotyphlops_vermicularis",
 
 s1.trim <- s1[!((s1$Id) %in% snakes),]
 
+s1.trim$Id <- tolower(s1.trim$Id) # make species Id's lowercase
+
 ### order species in alphabetical order
 
 s1.sorted <- s1.trim[order(s1.trim$Id),]
 
+### reassign row numbers based on alphabetical  order
 rownames(s1.sorted) <- seq(length=nrow(s1.sorted))
+### rename row numbers with the species name
+rownames(s1.sorted) <- s1.sorted$Id
 
 ### Convert 2D array to 3D array
 
@@ -70,9 +122,12 @@ head(s1.trim.3D)
 
       # Telencephalon
       # 1:5, 10:14, 19:26
+      # Anterior-most extent of the olfactory bulb 1-2
+      # Lateral-most extent of the olfactory bulb 3-4
       
       # Diencephalon
       # 6, 15, 43:45, 54:55, 61
+      # Optic chiasm - mid-sagittal plane 20
       
       # Mesencephalon
       # 7:8, 16:17, 27:28, 45, 48:49, 52:53, 58:59
@@ -88,22 +143,26 @@ dien <- s1.trim.3D[c(6, 15, 43:45, 54:55, 61), 1:3, 1:29]
 mes <- s1.trim.3D[c(7:8, 16:17, 27:28, 45, 48:49, 52:53, 58:59), 1:3, 1:29]
 cere <-s1.trim.3D[c(30:42, 50:51), 1:3, 1:29]
 medob <- s1.trim.3D[c(9, 18, 29, 45:47, 56:57, 60), 1:3, 1:29]
+# Note: s1.trim.3D is whole brain 
 
 
 
+# Have example of all the analysis with the whole brian data
+# Then create a function to test same things but on the separate brain regions 
+# we shouldn't need to run modularity or integration on the individual brain regions, I don't think 
 ### Geomorphometric analyses using package 'geomorph'
 
-### Generalized Procrustes Analysis - how we get shape variables from landmark data (refer to gpagen details)
+### Generalized Procrustes Analysis
+### how we get shape variables from landmark data (refer to gpagen details)
 S1.GPA <- gpagen(s1.trim.3D, ProcD = T, verbose = T)
-plot(S1.GPA) # ? does this plot all the species on top of each other?
 
-S1.GPA$procD
-S1.GPA$points.var
-plot(S1.GPA)
+S1.GPA$procD # Procrustes distance matrix for all specimens 
+S1.GPA$points.VCV # variance-covariance matrix among Procrustes shape variables 
+plot(S1.GPA) # ? does this plot all the species on top of each other?
 
 head(S1.GPA)
 
-S1.gdf <- 
+S1.gdf <- geomorph.data.frame(S1.GPA, phy = s1.tree) 
 
 ### Test the integration of the brain structures ('quantifying the degree of morphological integration between modular partitions of shape data')
 ### landmarks of the brain assigned to brain region partitions

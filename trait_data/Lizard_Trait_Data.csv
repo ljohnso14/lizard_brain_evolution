@@ -1,8 +1,8 @@
-﻿Id,main_biogeographic_realm,Latitude,longitude,insular_endemic,maxSVL,fSVL,hatchlingSVL,habitat_modes,activity_time,substrate,microhabitat,foraging_mode,reproductive_mode,clutch_size,IUCN_redlist_assessment,IUCN_population_trend
+Id,main_biogeographic_realm,Latitude,longitude,insular_endemic,maxSVL,fSVL,hatchlingSVL,habitat_modes,activity_time,substrate,microhabitat,foraging_mode,reproductive_mode,clutch_size,IUCN_redlist_assessment,IUCN_population_trend
 Ablepharus_kitaibelii,Palearctic,41.11,25.77,no,58,43.4,20,facultative_burrower,Diurnal,Terrestrial,Terrestrial,active_foraging,Oviparous,2.8,LC,stable
 Acontias_meleagris,Afrotropic,33.24,21.77,no,295,162.4,79,burrower,Cathemeral,Fossorial,Fossorial,active_foraging,Viviparous,3,LC,stable
 Agama_agama,Afrotropic,4.2,15.61,no,150,89.8,31,terrestrial,Diurnal,Arboreal_Saxicolous,Scansorial,sit_and_wait,Oviparous,8.8,LC,stable
-Amphisbaena_scutigerum,Neotropic,22.79,-43.04,no,500,NA,NA,burrower,Unknown,Fossorial ,Fossorial,active_foraging,Oviparous,NA,DD,unknown
+Amphisbaena_scutigerum,Neotropic,22.79,-43.04,no,500,NA,NA,burrower,Unknown,Fossorial,Fossorial,active_foraging,Oviparous,NA,DD,unknown
 Anguis_fragilis,Palearctic,50.12,8.1,no,291,176.5,47,facultative_burrower,Diurnal,Cryptic,Terrestrial,active_foraging,Viviparous,9.48,LC,stable
 Bachia_flavescens,Neotropic,0.37,-60.46,no,80,67.5,32,facultative_burrower,Diurnal,Fossorial_Terrestrial,Fossorial,active_foraging,Oviparous,1,LC,unknown
 Basiliscus_vittatus,Neotropic,16.82,-91.18,no,225,117.8,37.5,aerial_semiarboreal,Diurnal,Semi_Aquatic,Scansorial,sit_and_wait,Oviparous,5.4,LC,stable
