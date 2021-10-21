@@ -241,9 +241,17 @@ plot(S1.PCA)
 plot(S1.PCA, phylo=TRUE)
 
 str(S1.PCA)
-pca3d(S1.PCA$x)
+pca3d(S1.PCA$x, group = s1.traits$reproductive_mode, legend = "topleft", 
+      show.ellipses = T, ellipse.ci = 0.75)
 
+pca3d(S1.PCA$x, group = s1.traits$activity_time, legend = "topleft", 
+      show.ellipses = T, ellipse.ci = 0.75)
 
+pca3d(S1.PCA$x, group = s1.traits$microhabitat, legend = "topleft", 
+      show.ellipses = T, ellipse.ci = 0.75)
+
+pca3d(S1.PCA$x, group = s1.traits$substrate, legend = "topleft", 
+      show.ellipses = T, ellipse.ci = 0.75)
 
 Brain.pgls <- procD.pgls(coords ~ Csize, phy=s1.tree, data=S1.gdf)
 summary(Brain.pgls)
@@ -323,13 +331,13 @@ cere.trait.gdf <- geomorph.data.frame(cere.GPA,
                                  IUCNra = s1.traits$IUCN_redlist_assessment,
                                  IUCNpt = s1.traits$IUCN_population_trend)
 
-fm.cere.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + fm, phy=s1.tree, SS.type="I", data=cere.trait.gdf)
+fm.cere.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + fm, phy=s1.tree, SS.type="III", data=cere.trait.gdf)
 summary(fm.cere.pgls)
 
-rm.cere.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + rm, phy=s1.tree, SS.type="I", data=cere.trait.gdf)
+rm.cere.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + rm, phy=s1.tree, SS.type="III", data=cere.trait.gdf)
 summary(rm.cere.pgls) # trend 
 
-clutch.cere.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + clutch, phy=s1.tree, SS.type="I", data=cere.trait.gdf)
+clutch.cere.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + clutch, phy=s1.tree, SS.type="III", data=cere.trait.gdf)
 summary(clutch.cere.pgls)
 
 ##################
@@ -362,7 +370,7 @@ fm.tel.pgls <- procD.pgls(tel.GPA$coord ~ tel.GPA$Csize + fm, phy=s1.tree, SS.ty
 summary(fm.tel.pgls)
 
 rm.tel.pgls <- procD.pgls(tel.GPA$coord ~ tel.GPA$Csize + rm, phy=s1.tree, SS.type="I", data=tel.trait.gdf)
-summary(rm.tel.pgls) # trend
+summary(rm.tel.pgls) 
 
 clutch.tel.pgls <- procD.pgls(tel.GPA$coord ~ tel.GPA$Csize + clutch, phy=s1.tree, SS.type="I", data=tel.trait.gdf)
 summary(clutch.tel.pgls)
@@ -405,5 +413,16 @@ summary(rm.dien.pgls) # sign effect of rm
 clutch.dien.pgls <- procD.pgls(dien.GPA$coord ~ dien.GPA$Csize + clutch, phy=s1.tree, SS.type="I", data=dien.trait.gdf)
 summary(clutch.dien.pgls)
 
+hatch.dien.pgls <- procD.pgls(dien.GPA$coord ~ dien.GPA$Csize + hSVL + hSVL*dien.GPA$Csize, phy=s1.tree, SS.type="III", data=dien.trait.gdf)
+summary(hatch.dien.pgls) # sign 
+
+at.dien.pgls <- procD.pgls(dien.GPA$coord ~ dien.GPA$Csize + at, phy=s1.tree, SS.type="III", data=dien.trait.gdf)
+summary(at.dien.pgls) # trend
 
 capture.output(summary(fm.cere.pgls), file = "brain_results.doc", append = T)
+
+
+plot(log(s1.traits$clutch_size), log(s1.traits$hatchlingSVL))
+anova(lm(log(s1.traits$hatchlingSVL) ~ log(s1.traits$clutch_size))) 
+anova(lm(s1.traits$hatchlingSVL ~ s1.traits$clutch_size)) 
+# hatchling size and clutch size are not related to eachother 
