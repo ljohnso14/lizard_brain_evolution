@@ -260,6 +260,7 @@ summary(Brain.pgls)
 ##### Is brain shape different between foraging modes, reproductive mode, latitude
 
 trait.gdf <- geomorph.data.frame(S1.GPA,
+                                 family = s1.traits$family,
                                  bio_realm = s1.traits$main_biogeographic_realm,
                                  lat = s1.traits$Latitude,
                                  lon = s1.traits$longitude,
@@ -284,25 +285,14 @@ trait.gdf <- geomorph.data.frame(S1.GPA,
 #substrate.gdf    <- geomorph.data.frame(S1.GPA, substrate = s1.traits$substrate)
 #activitytime.gdf <- geomorph.data.frame(S1.GPA, activity = s1.traits$activity_time)
 
-fm.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + fm, phy=s1.tree, SS.type="I", data=foraging.gdf)
-summary(fm.pgls)
+cog.buffer.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + fm + microhab + at, phy=s1.tree, SS.type="III", data=trait.gdf)
+summary(cog.buffer.pgls) # didn't include substrate because non-conformable arguments 
 
+exp.brain.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + hSVL + clutch + rm, phy=s1.tree, SS.type="III", data=trait.gdf)
+summary(exp.brain.pgls)
 
-rm.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + rm, phy=s1.tree, SS.type="I", data=repro.mode.gdf)
-summary(rm.pgls)
-
-latitude.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + latitude, phy=s1.tree, SS.type="III", data=latitude.gdf, iter=9999)
-summary(latitude.pgls)
-
-bio_realm.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + bio_realm, phy=s1.tree, SS.type="III", 
-                             data=biogeography.gdf, iter=9999)
-summary(bio_realm.pgls)
-
-substrate.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + substrate, phy=s1.tree, SS.type="III", data=substrate.gdf, iter=9999)
-summary(substrate.pgls)
-
-activitytime.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + activity, phy=s1.tree, SS.type="III", data=activitytime.gdf, iter=9999)
-summary(activitytime.pgls)
+exp.brain.hsvl.pgls <- procD.pgls(S1.GPA$coord ~ S1.GPA$Csize + hSVL, phy=s1.tree, SS.type="III", data=trait.gdf)
+summary(exp.brain.hsvl.pgls)
 
 #############
 # analysis above but with the individual brain regions
@@ -330,6 +320,21 @@ cere.trait.gdf <- geomorph.data.frame(cere.GPA,
                                  clutch = s1.traits$clutch_size,
                                  IUCNra = s1.traits$IUCN_redlist_assessment,
                                  IUCNpt = s1.traits$IUCN_population_trend)
+
+
+cere.cog.buffer.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + fm + microhab + at, phy=s1.tree, SS.type="III", data=cere.trait.gdf)
+summary(cere.cog.buffer.pgls) # didn't include substrate because non-conformable arguments 
+
+cere.exp.brain.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + hSVL + clutch + rm, phy=s1.tree, SS.type="III", data=cere.trait.gdf)
+summary(cere.exp.brain.pgls)
+
+cere.exp.brain.hsvl.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + hSVL, phy=s1.tree, SS.type="III", data=cere.trait.gdf)
+summary(cere.exp.brain.hsvl.pgls)
+
+
+
+
+
 
 fm.cere.pgls <- procD.pgls(cere.GPA$coord ~ cere.GPA$Csize + fm, phy=s1.tree, SS.type="III", data=cere.trait.gdf)
 summary(fm.cere.pgls)
