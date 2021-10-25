@@ -146,6 +146,26 @@ medob <- s1.trim.3D[c(9, 18, 29, 45:47, 56:57, 60), 1:3, 1:29]
 # Note: s1.trim.3D is whole brain 
 
 
+###### working funciton and for loop!!!!!! #######
+geomorphfxn <- function(brain, tree, trait){
+  library(geomorph)
+  gpa <- gpagen(brain, ProcD = T, verbose = T)
+  gdf <- geomorph.data.frame(gpa, trait)
+  pgls <- procD.pgls(coords ~ Csize + hatchlingSVL, phy = tree, SS.type = "III", data = gdf)
+  summary(pgls)
+}
+
+listofdf <- list(s1.trim.3D, tel, dien)
+
+for (df in listofdf){
+  geomorphfxn(df) # I think I'll need to also insert the tree and trait inside for loop maybe
+}
+
+#################
+geomorphfxn(s1.trim.3D, s1.tree, s1.traits)
+
+test <- geomorph.data.frame(S1.GPA, s1.traits)
+summary(procD.pgls(coords ~ Csize + hSVL, phy=s1.tree, SS.type="III", data=trait.gdf))
 
 # Have example of all the analysis with the whole brian data
 # Then create a function to test same things but on the separate brain regions 
