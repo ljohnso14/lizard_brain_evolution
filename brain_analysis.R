@@ -147,7 +147,7 @@ medob <- s1.trim.3D[c(9, 18, 29, 45:47, 56:57, 60), 1:3, 1:29]
 
 
 ###### working funciton and for loop!!!!!! #######
-geomorphfxn <- function(brain, tree, trait){
+geomorphfxn <- function(brain, tree, trait, title){
   library(geomorph)
   gpa <- gpagen(brain, ProcD = T, verbose = T)
   gdf <- geomorph.data.frame(gpa, trait)
@@ -155,10 +155,14 @@ geomorphfxn <- function(brain, tree, trait){
   summary(pgls)
 }
 
-listofdf <- list(s1.trim.3D, tel, dien)
+listofdf <- list(s1.trim.3D, tel, dien, mes, cere, medob) #add heading to each array 
+title <- c("whole brain", "telencephalon", "diencephalon", "mesencephalon",
+           "cerebellum", "medulla oblongata")
 
 for (df in listofdf){
-  geomorphfxn(df) # I think I'll need to also insert the tree and trait inside for loop maybe
+  results <- geomorphfxn(df, s1.tree, s1.traits)
+  print(df)
+  print(results)# I think I'll need to also insert the tree and trait inside for loop maybe
 }
 
 #################
