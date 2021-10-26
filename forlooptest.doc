@@ -1,0 +1,300 @@
+1. whole brain
+2. telencephalon
+3. diencephalon
+4. mesencephalon
+5. cerebellum
+6. medulla oblongata
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+                  Df        SS         MS     Rsq      F      Z Pr(>F)   
+Csize              1 0.0012817 0.00128171 0.12320 4.2041 2.6477  0.002 **
+hatchlingSVL       1 0.0006377 0.00063767 0.06129 2.0916 1.6202  0.055 . 
+clutch_size        1 0.0002613 0.00026126 0.02511 0.8570 0.0079  0.493   
+reproductive_mode  1 0.0005107 0.00051072 0.04909 1.6752 1.2865  0.101   
+Residuals         24 0.0073169 0.00030487 0.70328                        
+Total             28 0.0104039                                           
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + hatchlingSVL + clutch_size + reproductive_mode,  
+    iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+              Df        SS         MS     Rsq      F        Z Pr(>F)  
+Csize          1 0.0005756 0.00057563 0.05533 1.8788  1.46690  0.081 .
+activity_time  2 0.0005845 0.00029225 0.05618 0.9538  0.04149  0.493  
+microhabitat   2 0.0004260 0.00021302 0.04095 0.6953 -0.78756  0.766  
+foraging_mode  3 0.0009962 0.00033208 0.09576 1.0839  0.43242  0.327  
+Residuals     20 0.0061278 0.00030639 0.58899                         
+Total         28 0.0104039                                            
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + activity_time + microhabitat +  
+    foraging_mode, iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+1. whole brain
+2. telencephalon
+3. diencephalon
+4. mesencephalon
+5. cerebellum
+6. medulla oblongata
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+                  Df        SS         MS     Rsq      F       Z Pr(>F)   
+Csize              1 0.0026329 0.00263289 0.21006 8.0677  3.1839  0.001 **
+hatchlingSVL       1 0.0005528 0.00055278 0.04410 1.6938  1.0980  0.130   
+clutch_size        1 0.0001654 0.00016538 0.01319 0.5067 -0.6615  0.738   
+reproductive_mode  1 0.0004714 0.00047137 0.03761 1.4444  0.8904  0.186   
+Residuals         24 0.0078324 0.00032635 0.62489                         
+Total             28 0.0125341                                            
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + hatchlingSVL + clutch_size + reproductive_mode,  
+    iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+              Df        SS         MS     Rsq      F        Z Pr(>F)   
+Csize          1 0.0017076 0.00170760 0.13624 5.3843  2.83134  0.003 **
+activity_time  2 0.0006678 0.00033391 0.05328 1.0529  0.25445  0.411   
+microhabitat   2 0.0007122 0.00035610 0.05682 1.1228  0.46723  0.321   
+foraging_mode  3 0.0005503 0.00018343 0.04390 0.5784 -1.28090  0.903   
+Residuals     20 0.0063429 0.00031714 0.50605                          
+Total         28 0.0125341                                             
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + activity_time + microhabitat +  
+    foraging_mode, iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+1. whole brain
+2. telencephalon
+3. diencephalon
+4. mesencephalon
+5. cerebellum
+6. medulla oblongata
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+                  Df        SS         MS     Rsq      F        Z Pr(>F)  
+Csize              1 0.0001676 0.00016755 0.01568 0.4714 -1.25563  0.890  
+hatchlingSVL       1 0.0004862 0.00048625 0.04551 1.3679  0.81597  0.210  
+clutch_size        1 0.0002583 0.00025835 0.02418 0.7268 -0.36089  0.630  
+reproductive_mode  1 0.0006954 0.00069536 0.06509 1.9562  1.46464  0.077 .
+Residuals         24 0.0085311 0.00035546 0.79854                         
+Total             28 0.0106834                                            
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + hatchlingSVL + clutch_size + reproductive_mode,  
+    iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+              Df        SS         MS     Rsq      F       Z Pr(>F)   
+Csize          1 0.0012379 0.00123789 0.11587 3.7367 2.41863  0.005 **
+activity_time  2 0.0010272 0.00051361 0.09615 1.5504 1.20980  0.120   
+microhabitat   2 0.0009200 0.00046000 0.08612 1.3886 0.97117  0.166   
+foraging_mode  3 0.0014193 0.00047309 0.13285 1.4281 1.15537  0.131   
+Residuals     20 0.0066255 0.00033128 0.62017                         
+Total         28 0.0106834                                            
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + activity_time + microhabitat +  
+    foraging_mode, iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+1. whole brain
+2. telencephalon
+3. diencephalon
+4. mesencephalon
+5. cerebellum
+6. medulla oblongata
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+                  Df        SS         MS     Rsq      F        Z Pr(>F)   
+Csize              1 0.0005593 0.00055930 0.04431 1.4271  0.92297  0.176   
+hatchlingSVL       1 0.0015448 0.00154483 0.12240 3.9418  2.53599  0.006 **
+clutch_size        1 0.0002991 0.00029907 0.02370 0.7631 -0.25609  0.595   
+reproductive_mode  1 0.0006589 0.00065893 0.05221 1.6813  1.19345  0.113   
+Residuals         24 0.0094058 0.00039191 0.74524                          
+Total             28 0.0126212                                             
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + hatchlingSVL + clutch_size + reproductive_mode,  
+    iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+              Df        SS         MS     Rsq      F        Z Pr(>F)  
+Csize          1 0.0002940 0.00029396 0.02329 0.7130 -0.42776  0.660  
+activity_time  2 0.0014447 0.00072235 0.11447 1.7522  1.46795  0.069 .
+microhabitat   2 0.0007453 0.00037267 0.05906 0.9040 -0.08738  0.532  
+foraging_mode  3 0.0012665 0.00042218 0.10035 1.0241  0.17461  0.430  
+Residuals     20 0.0082452 0.00041226 0.65328                         
+Total         28 0.0126212                                            
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + activity_time + microhabitat +  
+    foraging_mode, iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+1. whole brain
+2. telencephalon
+3. diencephalon
+4. mesencephalon
+5. cerebellum
+6. medulla oblongata
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+                  Df        SS         MS     Rsq      F       Z Pr(>F)  
+Csize              1 0.0009129 0.00091294 0.04829 1.5140 0.97017  0.167  
+hatchlingSVL       1 0.0012038 0.00120376 0.06367 1.9963 1.34268  0.090 .
+clutch_size        1 0.0006134 0.00061342 0.03244 1.0173 0.39802  0.343  
+reproductive_mode  1 0.0006470 0.00064696 0.03422 1.0729 0.33704  0.371  
+Residuals         24 0.0144722 0.00060301 0.76543                        
+Total             28 0.0189072                                           
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + hatchlingSVL + clutch_size + reproductive_mode,  
+    iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+              Df        SS         MS     Rsq      F        Z Pr(>F)  
+Csize          1 0.0003868 0.00038682 0.02046 0.6539 -0.29088  0.614  
+activity_time  2 0.0026895 0.00134477 0.14225 2.2733  1.64925  0.046 *
+microhabitat   2 0.0012252 0.00061261 0.06480 1.0356  0.30166  0.387  
+foraging_mode  3 0.0016439 0.00054798 0.08695 0.9263  0.04659  0.484  
+Residuals     20 0.0118310 0.00059155 0.62574                         
+Total         28 0.0189072                                            
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + activity_time + microhabitat +  
+    foraging_mode, iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+1. whole brain
+2. telencephalon
+3. diencephalon
+4. mesencephalon
+5. cerebellum
+6. medulla oblongata
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+                  Df        SS         MS     Rsq      F        Z Pr(>F)  
+Csize              1 0.0005840 0.00058401 0.10044 3.1263  2.19174  0.016 *
+hatchlingSVL       1 0.0002368 0.00023679 0.04073 1.2676  0.63643  0.264  
+clutch_size        1 0.0001155 0.00011548 0.01986 0.6182 -0.52022  0.694  
+reproductive_mode  1 0.0003131 0.00031313 0.05386 1.6762  1.14019  0.128  
+Residuals         24 0.0044833 0.00018681 0.77109                         
+Total             28 0.0058143                                            
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + hatchlingSVL + clutch_size + reproductive_mode,  
+    iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+              Df        SS         MS     Rsq      F        Z Pr(>F)  
+Csize          1 0.0000992 9.9213e-05 0.01706 0.5388 -0.72247  0.768  
+activity_time  2 0.0006224 3.1120e-04 0.10705 1.6900  1.34136  0.090 .
+microhabitat   2 0.0004298 2.1489e-04 0.07392 1.1670  0.54817  0.302  
+foraging_mode  3 0.0005841 1.9471e-04 0.10046 1.0574  0.31811  0.387  
+Residuals     20 0.0036829 1.8415e-04 0.63342                         
+Total         28 0.0058143                                            
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + activity_time + microhabitat +  
+    foraging_mode, iter = iter, seed = seed, RRPP = TRUE, SS.type = SS.type,  
+    effect.type = effect.type, int.first = int.first, Cov = Cov,  
+    data = data, print.progress = print.progress)

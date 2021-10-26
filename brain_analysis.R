@@ -147,24 +147,51 @@ medob <- s1.trim.3D[c(9, 18, 29, 45:47, 56:57, 60), 1:3, 1:29]
 
 
 ###### working funciton and for loop!!!!!! #######
-geomorphfxn <- function(brain, tree, trait, title){
+brainfxn <- function(brain, tree, trait, region, outputname){
+  
   library(geomorph)
   gpa <- gpagen(brain, ProcD = T, verbose = T)
   gdf <- geomorph.data.frame(gpa, trait)
-  pgls <- procD.pgls(coords ~ Csize + hatchlingSVL, phy = tree, SS.type = "III", data = gdf)
-  summary(pgls)
-}
+  
+  write(region, file = outputname, append = T)
+  
+  pgls1 <- procD.pgls(coords ~ Csize + hatchlingSVL + clutch_size + reproductive_mode, 
+                     phy = tree, SS.type = "III", data = gdf)
+  results1 <- summary(pgls1)
+  capture.output(results1, file = outputname, append = T)
+  
+  
+  pgls2 <- procD.pgls(coords ~ Csize + activity_time + microhabitat + foraging_mode, 
+                     phy = tree, SS.type = "III", data = gdf)
+  results2 <- summary(pgls2)
+  capture.output(results2, file = outputname, append = T)
+  
 
-listofdf <- list(s1.trim.3D, tel, dien, mes, cere, medob) #add heading to each array 
-title <- c("whole brain", "telencephalon", "diencephalon", "mesencephalon",
-           "cerebellum", "medulla oblongata")
+} 
+
+outputname <- 'testoutput.doc'
+brainfxn(s1.trim.3D, s1.tree, s1.traits, "Whole Brain", outputname)
+
+
+
+listofdf <- list(s1.trim.3D, tel, dien, mes, cere, medob) #add heading to each array
+names(listofdf) <- c("whole brain", "telencephalon", "diencephalon", "mesencephalon",
+                     "cerebellum", "medulla oblongata")
+
+dftitles <- c("whole brain", "telencephalon", "diencephalon", "mesencephalon",
+              "cerebellum", "medulla oblongata")
 
 for (df in listofdf){
-  results <- geomorphfxn(df, s1.tree, s1.traits)
-  print(df)
-  print(results)# I think I'll need to also insert the tree and trait inside for loop maybe
+
+  regions <- c("1. whole brain", "2. telencephalon", "3. diencephalon", "4. mesencephalon",
+               "5. cerebellum", "6. medulla oblongata")
+  
+  outputname <- "forlooptest.doc"
+  
+  brainfxn(df, s1.tree, s1.traits, regions[], outputname)
 }
 
+paste(Sys.time(), " - ", measure)
 #################
 geomorphfxn(s1.trim.3D, s1.tree, s1.traits)
 
