@@ -172,6 +172,8 @@ brainfxn <- function(brain, tree, trait, region, outputname){
 outputname <- 'testoutput.doc'
 brainfxn(s1.trim.3D, s1.tree, s1.traits, "Whole Brain", outputname)
 
+outputname <- 'dien.doc'
+brainfxn(dien, s1.tree, s1.traits, "Diencephalon", outputname)
 
 
 listofdf <- list(s1.trim.3D, tel, dien, mes, cere, medob) #add heading to each array
