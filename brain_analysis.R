@@ -14,14 +14,6 @@ library(pca3d)
 library(Rphylopars)
 library(dplyr)
 
-
-### Table of Contents
-### 1) read data
-### 2) remove snakes from dataframe, leaving only lizards
-### 3) convert 2D array to 3D array
-### 4) create individual dataframes for each major brain region 
-
-
 ### Read in tree
 s1.tree <- read.nexus("BrainGeomorph.nex")
 
@@ -39,7 +31,8 @@ head(s1.traits)
 
 ### impute continuous trait data 
 
-s1.traits.cont <- s1.traits[,c("Id", "maxSVL", "fSVL", "hatchlingSVL", "clutch_size")]
+s1.traits.cont <- s1.traits[,c("Id", "maxSVL", "fSVL", "hatchlingSVL", 
+                               "clutch_size", "PrecipSeasonality", "TempSeasonality")]
 
 names(s1.traits.cont)[1] <- "species" # rename column from Id to species b/c phylpar requires it
 
@@ -56,11 +49,19 @@ s1.traits.imputed.values <- s1.traits.imputed.values[c(1:29),]
 s1.traits["amphisbaena_scutigerum","fSVL"] = 325.891 
 s1.traits["amphisbaena_scutigerum", "hatchlingSVL"] <- 98.704
 s1.traits["amphisbaena_scutigerum","clutch_size"] <- 5.507
+s1.traits["amphisbaena_scutigerum","PrecipSeasonality"] = 54.69 
+s1.traits["amphisbaena_scutigerum","TempSeasonality"] = 6485.59
+
+
 
 s1.traits["plestiodon_marginatus","hatchlingSVL"] <- 33.62
 s1.traits["plestiodon_marginatus","clutch_size"] <- 4.78
+s1.traits["plestiodon_marginatus","PrecipSeasonality"] <- 70.22
+s1.traits["plestiodon_marginatus","TempSeasonality"] <- 3369.46
 
 s1.traits["rieppeleon_brevicaudatus","hatchlingSVL"] <- 25.52
+
+
 
 
 ### Read in brain data 
@@ -146,6 +147,48 @@ medob <- s1.trim.3D[c(9, 18, 29, 45:47, 56:57, 60), 1:3, 1:29]
 # Note: s1.trim.3D is whole brain 
 
 
+##### 11/2/2021
+library(ggpubr)
+ggscatter(s1.traits, x = "PrecipSeasonality", y = "TempSeasonality", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson")
+
+plot(data = s1.traits, PrecipSeasonality ~ TempSeasonality)
+ggqqplot(s1.traits$PrecipSeasonality)
+ggqqplot(s1.traits$TempSeasonality)
+
+install.packages("Hmisc")
+library(Hmisc)
+
+corrmatrix <- rcorr(as.matrix(s1.traits[,c("maxSVL", "fSVL", "hatchlingSVL", 
+                                       "clutch_size", "PrecipSeasonality", 
+                                       "TempSeasonality")]))
+
+mydata.cor <- cor((s1.traits[,c("maxSVL", "fSVL", "hatchlingSVL", 
+                                "clutch_size", "PrecipSeasonality", 
+                                "TempSeasonality")]), 
+                  method = c('spearman'))
+
+testRes <- cor.mtest((s1.traits[,c("maxSVL", "fSVL", "hatchlingSVL", 
+                                  "clutch_size", "PrecipSeasonality", 
+                                  "TempSeasonality")]), conf.level = 0.95)
+
+# plotting the results of the correlation matrix between the continuous variables in our dataset
+install.packages("corrplot")
+library(corrplot)
+corrplot(mydata.cor, method = 'circle', type = 'lower', 
+         addCoef.col ='black', number.cex = 0.8, order = 'AOE', diag=FALSE)
+
+corrplot(mydata.cor, p.mat = testRes$p, method = 'circle', type = 'lower', 
+         addCoef.col ='black', number.cex = 0.8, order = 'AOE', diag=FALSE)
+
+
+
+library(tidyverse)
+tibble(tel, dien, mes, cere, medob)
+map(tel, gpagen)
+library(geomorph)
+
 ###### working funciton and for loop!!!!!! #######
 brainfxn <- function(brain, tree, trait, region, outputname){
   
@@ -168,6 +211,9 @@ brainfxn <- function(brain, tree, trait, region, outputname){
   
 
 } 
+
+
+
 
 outputname <- 'testoutput.doc'
 brainfxn(s1.trim.3D, s1.tree, s1.traits, "Whole Brain", outputname)
