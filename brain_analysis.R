@@ -198,23 +198,71 @@ brainfxn <- function(brain, tree, trait, region, outputname){
   
   write(region, file = outputname, append = T)
   
-  pgls1 <- procD.pgls(coords ~ Csize + hatchlingSVL + clutch_size + reproductive_mode, 
-                     phy = tree, SS.type = "III", data = gdf)
+  pgls1 <- procD.pgls(coords ~ Csize + main_biogeographic_realm, phy = tree, SS.type = "III", data = gdf)
+  
+  pgls2 <- procD.pgls(coords ~ Csize + Latitude, phy = tree, SS.type = "III", data = gdf)
+  
+  pgls3 <- procD.pgls(coords ~ Csize + hatchlingSVL, phy = tree, SS.type = "III", data = gdf)
+  
+  pgls4 <- procD.pgls(coords ~ Csize + activity_time, phy = tree, SS.type = "III", data = gdf)
+  
+  pgls5 <- procD.pgls(coords ~ Csize + substrate, phy = tree, SS.type = "III", data = gdf)
+  
+  pgls6 <- procD.pgls(coords ~ Csize + microhabitat, phy = tree, SS.type = "III", data = gdf)
+  
+  pgls7 <- procD.pgls(coords ~ Csize + foraging_mode, phy = tree, SS.type = "III", data = gdf)
+  
+  pgls8 <- procD.pgls(coords ~ Csize + reproductive_mode, phy = tree, SS.type = "III", data = gdf)
+  
+  pgls9 <- procD.pgls(coords ~ Csize + clutch_size, phy = tree, SS.type = "III", data = gdf)
+  
+  pgls10 <- procD.pgls(coords ~ Csize + PrecipSeasonality, phy = tree, SS.type = "III", data = gdf)
+  
+  pgls11 <- procD.pgls(coords ~ Csize + TempSeasonality, phy = tree, SS.type = "III", data = gdf)
+  
+  
   results1 <- summary(pgls1)
-  capture.output(results1, file = outputname, append = T)
-  
-  
-  pgls2 <- procD.pgls(coords ~ Csize + activity_time + microhabitat + foraging_mode, 
-                     phy = tree, SS.type = "III", data = gdf)
   results2 <- summary(pgls2)
-  capture.output(results2, file = outputname, append = T)
+  results3 <- summary(pgls3)
+  results4 <- summary(pgls4)
+  results5 <- summary(pgls5)
+  results6 <- summary(pgls6)
+  results7 <- summary(pgls7)
+  results8 <- summary(pgls8)
+  results9 <- summary(pgls9)
+  results10 <- summary(pgls10)
+  results11 <- summary(pgls11)
   
-
+  
+  capture.output(results1, file = outputname, append = T)
+  capture.output(results2, file = outputname, append = T)
+  capture.output(results3, file = outputname, append = T)
+  capture.output(results4, file = outputname, append = T)
+  capture.output(results5, file = outputname, append = T)
+  capture.output(results6, file = outputname, append = T)
+  capture.output(results7, file = outputname, append = T)
+  capture.output(results8, file = outputname, append = T)
+  capture.output(results9, file = outputname, append = T)
+  capture.output(results10, file = outputname, append = T)
+  capture.output(results11, file = outputname, append = T)
+  
+  
 } 
 
+# 11/3/2021
+brainfxn(s1.trim.3D, s1.tree, s1.traits, 'Whole Brain', 'wholebrainshape.doc')
+brainfxn(tel, s1.tree, s1.traits, 'Telencephalon', 'telshape.doc')
+brainfxn(dien, s1.tree, s1.traits, 'Diencephalon', 'dienshape.doc')
+brainfxn(mes, s1.tree, s1.traits, 'Mesencephalon', 'messhape.doc')
+brainfxn(cere, s1.tree, s1.traits, 'Cerebellum', 'cereshape.doc')
+brainfxn(medob, s1.tree, s1.traits, 'Medulla Oblongata', 'medobshape.doc')
 
 
 
+
+
+
+####
 outputname <- 'testoutput.doc'
 brainfxn(s1.trim.3D, s1.tree, s1.traits, "Whole Brain", outputname)
 

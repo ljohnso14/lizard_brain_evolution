@@ -1,0 +1,208 @@
+Medulla Oblongata
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+                         Df        SS         MS     Rsq      F      Z Pr(>F)  
+Csize                     1 0.0003697 0.00036974 0.06359 1.9406 1.3684  0.087 .
+main_biogeographic_realm  5 0.0010376 0.00020753 0.17846 1.0892 0.3275  0.374  
+Residuals                22 0.0041917 0.00019053 0.72092                       
+Total                    28 0.0058143                                          
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + main_biogeographic_realm, iter = iter,  
+    seed = seed, RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+          Df        SS         MS     Rsq      F      Z Pr(>F)  
+Csize      1 0.0003813 0.00038132 0.06558 2.0116 1.4681  0.078 .
+Latitude   1 0.0003006 0.00030057 0.05170 1.5856 1.0673  0.142  
+Residuals 26 0.0049287 0.00018957 0.84769                       
+Total     28 0.0058143                                          
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + Latitude, iter = iter, seed = seed,  
+    RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+             Df        SS         MS     Rsq      F      Z Pr(>F)   
+Csize         1 0.0007083 0.00070827 0.12181 3.7771 2.5506  0.005 **
+hatchlingSVL  1 0.0003539 0.00035391 0.06087 1.8874 1.4132  0.072 . 
+Residuals    26 0.0048754 0.00018751 0.83851                        
+Total        28 0.0058143                                           
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + hatchlingSVL, iter = iter, seed = seed,  
+    RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+              Df        SS         MS     Rsq      F      Z Pr(>F)  
+Csize          1 0.0005619 0.00056192 0.09664 3.0294 2.2221  0.015 *
+activity_time  2 0.0005921 0.00029605 0.10184 1.5961 1.2539  0.106  
+Residuals     25 0.0046372 0.00018549 0.79755                       
+Total         28 0.0058143                                          
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + activity_time, iter = iter, seed = seed,  
+    RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+          Df        SS         MS     Rsq      F      Z Pr(>F)   
+Csize      1 0.0007311 0.00073113 0.12575 4.3529 2.6182  0.005 **
+substrate  8 0.0020380 0.00025475 0.35051 1.5167 1.6911  0.042 * 
+Residuals 19 0.0031913 0.00016796 0.54887                        
+Total     28 0.0058143                                           
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + substrate, iter = iter, seed = seed,  
+    RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+             Df        SS         MS     Rsq      F       Z Pr(>F)  
+Csize         1 0.0005727 0.00057271 0.09850 2.9511 2.12827  0.017 *
+microhabitat  2 0.0003777 0.00018884 0.06496 0.9731 0.09806  0.467  
+Residuals    25 0.0048516 0.00019406 0.83443                        
+Total        28 0.0058143                                           
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + microhabitat, iter = iter, seed = seed,  
+    RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+              Df        SS         MS     Rsq      F       Z Pr(>F)
+Csize          1 0.0002472 0.00024718 0.04251 1.2822 0.66271  0.248
+foraging_mode  3 0.0006027 0.00020091 0.10367 1.0422 0.29129  0.385
+Residuals     24 0.0046265 0.00019277 0.79572                      
+Total         28 0.0058143                                         
+
+Call: procD.lm(f1 = coords ~ Csize + foraging_mode, iter = iter, seed = seed,  
+    RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+                  Df        SS         MS     Rsq      F      Z Pr(>F)   
+Csize              1 0.0006910 0.00069102 0.11885 3.7156 2.6197  0.007 **
+reproductive_mode  1 0.0003938 0.00039383 0.06773 2.1176 1.5551  0.065 . 
+Residuals         26 0.0048355 0.00018598 0.83165                        
+Total             28 0.0058143                                           
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + reproductive_mode, iter = iter,  
+    seed = seed, RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+            Df        SS         MS     Rsq      F        Z Pr(>F)  
+Csize        1 0.0003803 0.00038031 0.06541 1.9262  1.42762  0.067 .
+clutch_size  1 0.0000959 0.00009593 0.01650 0.4859 -0.92684  0.812  
+Residuals   26 0.0051334 0.00019744 0.88288                         
+Total       28 0.0058143                                            
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + clutch_size, iter = iter, seed = seed,  
+    RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+                  Df        SS         MS     Rsq      F       Z Pr(>F)  
+Csize              1 0.0006104 0.00061044 0.10499 3.1850 2.29419  0.013 *
+PrecipSeasonality  1 0.0002461 0.00024611 0.04233 1.2841 0.68839  0.254  
+Residuals         26 0.0049832 0.00019166 0.85706                        
+Total             28 0.0058143                                           
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + PrecipSeasonality, iter = iter,  
+    seed = seed, RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
+
+Analysis of Variance, using Residual Randomization
+Permutation procedure: Randomization of null model residuals 
+Number of permutations: 1000 
+Estimation method: Generalized Least-Squares (via OLS projection) 
+Sums of Squares and Cross-products: Type III 
+Effect sizes (Z) based on F distributions
+
+                Df        SS         MS     Rsq      F       Z Pr(>F)  
+Csize            1 0.0003898 0.00038981 0.06704 2.0522 1.52823  0.062 .
+TempSeasonality  1 0.0002906 0.00029061 0.04998 1.5300 0.99148  0.168  
+Residuals       26 0.0049387 0.00018995 0.84940                        
+Total           28 0.0058143                                           
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call: procD.lm(f1 = coords ~ Csize + TempSeasonality, iter = iter,  
+    seed = seed, RRPP = TRUE, SS.type = SS.type, effect.type = effect.type,  
+    int.first = int.first, Cov = Cov, data = data, print.progress = print.progress)
