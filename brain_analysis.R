@@ -147,6 +147,15 @@ medob <- s1.trim.3D[c(9, 18, 29, 45:47, 56:57, 60), 1:3, 1:29]
 # Note: s1.trim.3D is whole brain 
 
 
+
+
+
+
+
+
+
+
+
 ##### 11/2/2021
 library(ggpubr)
 ggscatter(s1.traits, x = "PrecipSeasonality", y = "TempSeasonality", 
@@ -164,14 +173,19 @@ corrmatrix <- rcorr(as.matrix(s1.traits[,c("maxSVL", "fSVL", "hatchlingSVL",
                                        "clutch_size", "PrecipSeasonality", 
                                        "TempSeasonality")]))
 
-mydata.cor <- cor((s1.traits[,c("maxSVL", "fSVL", "hatchlingSVL", 
+mydata.cor <- cor(cbind(S1.GPA$Csize, (s1.traits[,c("Latitude", "maxSVL", "fSVL", "hatchlingSVL", 
                                 "clutch_size", "PrecipSeasonality", 
-                                "TempSeasonality")]), 
+                                "TempSeasonality")])), 
                   method = c('spearman'))
 
-testRes <- cor.mtest((s1.traits[,c("maxSVL", "fSVL", "hatchlingSVL", 
-                                  "clutch_size", "PrecipSeasonality", 
-                                  "TempSeasonality")]), conf.level = 0.95)
+mydata.cor <- cor(cbind(S1.GPA$Csize, (s1.traits[,c("Latitude", "maxSVL", "fSVL", "hatchlingSVL", 
+                                                    "clutch_size", "PrecipSeasonality", 
+                                                    "TempSeasonality")])), 
+                  method = c('pearson'))
+
+testRes <- cor.mtest(cbind(S1.GPA$Csize, (s1.traits[,c("Latitude", "maxSVL", "fSVL", "hatchlingSVL", 
+                                                       "clutch_size", "PrecipSeasonality", 
+                                                       "TempSeasonality")])), conf.level = 0.95)
 
 # plotting the results of the correlation matrix between the continuous variables in our dataset
 install.packages("corrplot")
@@ -259,6 +273,26 @@ brainfxn(medob, s1.tree, s1.traits, 'Medulla Oblongata', 'medobshape.doc')
 
 
 
+
+
+
+# Meeting with Don 11/3/2021
+
+library(geomorph)
+
+
+pls.traits <- as.matrix(cbind(s1.traits$maxSVL, s1.traits$fSVL, s1.traits$hatchlingSVL, s1.traits$clutch_size, s1.traits$Latitude, s1.traits$PrecipSeasonality, s1.traits$TempSeasonality))
+pls.cb.traits <- as.matrix(cbind(s1.traits$Latitude, s1.traits$PrecipSeasonality, s1.traits$TempSeasonality))
+pls.cb.cat.traits <- as.matrix(cbind(s1.traits$activity_time, s1.traits$foraging_mode, s1.traits$microhabitat))
+class(pls.traits)
+row.names(pls.traits) <- s1.tree$tip.label
+
+brain.pls <- phylo.integration(S1.GPA$coords, pls.traits, phy = s1.tree)
+brain.pls <- two.b.pls(S1.GPA$coords, pls.cb.traits)
+brain.pls <- two.b.pls(S1.GPA$coords, pls.cb.cat.traits) # error, not numeric
+
+summary(brain.pls)
+plot(brain.pls)
 
 
 
