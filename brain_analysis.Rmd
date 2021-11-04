@@ -1,48 +1,87 @@
 ---
-title: "brain_analysis"
-author: "Lauren E Johnson"
-date: "10/5/2021"
+title: "Ecological and Reproductive Predictors of Brain Size and Shape"
+author: "Lauren E. Johnson & Donald B. Miles"
+date: "11/4/2021"
 output: html_document
 ---
 
-Brain morphology analysis 
 
-load appropriate packages 
-```{r}
+1) Load appropriate packages 
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 library(tidyverse)
 library(geomorph)
 library(ggplot2)
+library(cowplot)
+library(ape)
+library(phytools)
+library(geiger)
+library(tidytree)
+library(picante)
+library(pca3d)
+library(Rphylopars)
+library(dplyr)
+library(ggpubr)
+library(Hmisc)
+library(corrplot)
 ```
 
-Table of Contents
-1) read data
-2) remove snakes from dataframe, leaving only lizards
-3) convert 2D array to 3D array
-4) create individual dataframes for each major brain region 
-
-
-Read in brain data 
+2) Read in phylogeny data
+make species ID's lowercase for future function that needs everythign lowercase
 ```{r}
-s1 <- read.csv("./brain_data/whole_brain_coords_S1.csv", stringsAsFactors = F)
+s1.tree <- read.nexus("BrainGeomorph.nex")
+s1.tree$tip.label <- tolower(s1.tree$tip.label) # make species Id's lowercase
+plot(s1.tree)
 ```
 
-Remove snakes from dataframe
+Read in ecological and reproductive trait data
 ```{r}
-snakes <- c("Xerotyphlops_vermicularis",
-            "Python_regius",
-            "Epicrates_cenchria",
-            "Eryx_jaculus",
-            "Cerastes_cerastes",
-            "Hydrophis_platurus",
-            "Boaedon_fuliginosus",
-            "Chrysopelea_ornata",
-            "Dendrelaphis_pictus",
-            "Dasypeltis_gansi",
-            "Pantherophis_guttatus")
+s1.traits <- read.csv("./trait_data/Lizard_Trait_Data.csv", stringsAsFactors = F)
+s1.traits$Id <- tolower(s1.traits$Id) #make species Id's lowercase
+rownames(s1.traits) <- s1.traits$Id
+head(s1.traits)
+```
 
-s1.trim <- s1[!((s1$Id) %in% snakes),]
+Impute missing values for the traits that are continuous variables and add into the trait data set 
+
+```{r}
+s1.traits.cont <- s1.traits[,c("Id", "maxSVL", "fSVL", "hatchlingSVL", 
+                               "clutch_size", "PrecipSeasonality", "TempSeasonality")]
+
+names(s1.traits.cont)[1] <- "species" # rename column from Id to species b/c phylpar requires it
+
+s1.traits.imputed <- phylopars(trait_data = s1.traits.cont, tree = s1.tree)
+
+str(s1.traits.imputed)
+s1.traits.imputed$anc_recon
+
+s1.traits.imputed.values <- s1.traits.imputed$anc_recon
+s1.traits.imputed.values <- s1.traits.imputed.values[c(1:29),]
+
+# s1.traits.imputed.values isn't a data frame, so needed to manually add imputed values to s1.traits
+s1.traits["amphisbaena_scutigerum","fSVL"] = 325.891 
+s1.traits["amphisbaena_scutigerum", "hatchlingSVL"] <- 98.704
+s1.traits["amphisbaena_scutigerum","clutch_size"] <- 5.507
+s1.traits["amphisbaena_scutigerum","PrecipSeasonality"] = 54.69 
+s1.traits["amphisbaena_scutigerum","TempSeasonality"] = 6485.59
+
+
+
+s1.traits["plestiodon_marginatus","hatchlingSVL"] <- 33.62
+s1.traits["plestiodon_marginatus","clutch_size"] <- 4.78
+s1.traits["plestiodon_marginatus","PrecipSeasonality"] <- 70.22
+s1.traits["plestiodon_marginatus","TempSeasonality"] <- 3369.46
+
+s1.traits["rieppeleon_brevicaudatus","hatchlingSVL"] <- 25.52
 
 ```
+
+
+
+
+#######stopped here
+
+
+
 
 Convert 2D array to 3D array
 ```{r}
